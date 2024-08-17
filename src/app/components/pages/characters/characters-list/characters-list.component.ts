@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../../shared/services/data.service';
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
+import { CharactersCardComponent } from '../characters-card/characters-card.component';
 
 @Component({
   selector: 'app-characters-list',
   standalone: true,
-  imports: [JsonPipe, AsyncPipe],
+  imports: [CharactersCardComponent,JsonPipe, AsyncPipe, NgFor,NgIf],
   templateUrl: './characters-list.component.html',
   styleUrl: './characters-list.component.scss'
 })
