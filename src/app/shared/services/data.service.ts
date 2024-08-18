@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { BehaviorSubject, of } from 'rxjs';
-import { catchError, find, mergeMap, pluck, take, tap, withLatestFrom } from 'rxjs/operators';
+import { catchError, find, map, mergeMap, take, tap, withLatestFrom } from 'rxjs/operators';
 import { Character, DataResponse, Episode } from '../interfaces/data.interface';
 import { LocalStorageService } from './localStorage.service';
 
@@ -64,7 +64,7 @@ export class DataService {
       query: QUERY_BY_PAGE
     }).valueChanges.pipe(
       take(1),
-      pluck('data', 'characters'),
+      map(x => x?.data?.characters),
       withLatestFrom(this.characters$),
       tap(([apiResponse, characters]) => {
         this.parseCharactersData([...characters, ...apiResponse.results]);
@@ -105,12 +105,12 @@ export class DataService {
       }).valueChanges
       .pipe(
         take(1),
-        pluck('data', 'characters'),
+        map(x => x?.data?.characters),
         tap((apiResponse) => this.parseCharactersData([...apiResponse.results])),
         catchError(error => {
           console.log(error.message);
-          //@ts-ignore
-          this.charactersSubject.next(null);
+          ////////////////////////////////
+          this.charactersSubject.next([]);
           return of(error);
         })
       )

@@ -3,7 +3,7 @@ import { Component, HostListener, Inject } from '@angular/core';
 import { DataService } from '../../../../shared/services/data.service';
 import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
 import { CharactersCardComponent } from '../characters-card/characters-card.component';
-import { SearchComponent } from '../../../../shared/component/search/search.component';
+import { SearchComponent } from '../../../../shared/components/search/search.component';
 import { InfiniteScrollDirective  } from "ngx-infinite-scroll";
 
 @Component({

@@ -50,8 +50,7 @@ export class LocalStorageService {
 
   getFavoritesCharacters(): any {
     try {
-      //@ts-ignore
-      const charactersFav = JSON.parse(localStorage.getItem(MY_FAVORITES));
+      const charactersFav = JSON.parse(localStorage.getItem(MY_FAVORITES)!);
       this.charactersFavSubject.next(charactersFav);
       return charactersFav;
     } catch (error) {
@@ -68,8 +67,7 @@ export class LocalStorageService {
   }
 
   private initialStorage(): void {
-    //@ts-ignore
-    const currents = JSON.parse(localStorage.getItem(MY_FAVORITES));
+    const currents = JSON.parse(localStorage.getItem(MY_FAVORITES)!);
     if (!currents) {
       localStorage.setItem(MY_FAVORITES, JSON.stringify([]));
     }
