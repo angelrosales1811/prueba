@@ -12,7 +12,11 @@ import { CharactersCardComponent } from '../characters-card/characters-card.comp
 })
 export class CharactersListComponent implements OnInit{
   characters$ = this.dataSvc.characters$;
-  constructor(private dataSvc: DataService){}
+  constructor(private dataSvc: DataService){
+console.log(this.characters$);
+  }
+
+ 
   ngOnInit(): void {
   
   }
