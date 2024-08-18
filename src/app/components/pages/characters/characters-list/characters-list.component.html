@@ -1,17 +1,16 @@
+<app-search></app-search>
 <section class="character__list">
   
-  <ng-container *ngIf="characters$ | async as characters; else showEmpty">
+  <ng-container *ngIf="characters$ | async as characters;">
     @for (
       character of characters; track character.id) {
         <app-characters-card [character]="character"></app-characters-card>
+      }@empty {
+        <div class="notResults">
+          <h1 class="title">Not results</h1>
+        </div>
       }
   </ng-container>
-   <ng-template #showEmpty>
-    <div class="notResults">
-      <h1 class="title">Not results</h1>
-      <img src="assets/imgs/404.jpeg" alt="404" />
-    </div>
-   </ng-template>
 
     <!-- <button *ngIf="showButton" (click)="onScrollTop()" class="button">⬆️</button> -->
   </section>
