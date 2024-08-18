@@ -39,39 +39,39 @@ export class DataService {
     this.getDataAPI();
   }
 
-  // getDetails(id: number): any {
-  //   return this.characters$.pipe(
-  //     mergeMap((characters: Character[]) => characters),
-  //     find((character: Character) => character?.id === id)
-  //   );
-  // }
+  getDetails(id: number): any {
+    return this.characters$.pipe(
+      mergeMap((characters: Character[]) => characters),
+      find((character: Character) => character?.id === id)
+    );
+  }
 
-  // getCharactersByPage(pageNum: number): void {
-  //   const QUERY_BY_PAGE = gql`{
-  //     characters(page: ${pageNum}) {
-  //       results {
-  //         id
-  //         name
-  //         status
-  //         species
-  //         gender
-  //         image
-  //       }
-  //     }
-  //   }`;
+  getCharactersByPage(pageNum: number): void {
+    const QUERY_BY_PAGE = gql`{
+      characters(page: ${pageNum}) {
+        results {
+          id
+          name
+          status
+          species
+          gender
+          image
+        }
+      }
+    }`;
 
-  //   this.apollo.watchQuery<any>({
-  //     query: QUERY_BY_PAGE
-  //   }).valueChanges.pipe(
-  //     take(1),
-  //     pluck('data', 'characters'),
-  //     withLatestFrom(this.characters$),
-  //     tap(([apiResponse, characters]) => {
-  //       this.parseCharactersData([...characters, ...apiResponse.results]);
-  //     })
-  //   ).subscribe();
+    this.apollo.watchQuery<any>({
+      query: QUERY_BY_PAGE
+    }).valueChanges.pipe(
+      take(1),
+      pluck('data', 'characters'),
+      withLatestFrom(this.characters$),
+      tap(([apiResponse, characters]) => {
+        this.parseCharactersData([...characters, ...apiResponse.results]);
+      })
+    ).subscribe();
 
-  // }
+  }
 
 
   filterData(valueToSearch: string): void {
